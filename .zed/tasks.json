@@ -1,0 +1,5 @@
+[
+  { "label": "mvn compile", "command": "mvn", "args": ["compile"] },
+  { "label": "mvn test", "command": "mvn", "args": ["test"] },
+  { "label": "mvn package", "command": "mvn", "args": ["package"] }
+]
