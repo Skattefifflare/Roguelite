@@ -3,6 +3,8 @@ import java.awt.image.BufferedImage;
 import input.InputFacade;
 import graphics.Sprite;
 import input.KeyActions;
+import java.util.List;
+import graphics.Texture;
 
 
 public class Player extends GameObject {
@@ -22,8 +24,8 @@ public class Player extends GameObject {
     }
 
     @Override
-    public BufferedImage getTexture(){
-        return currentSprite.getCurrentFrame();
+    protected final void queueTextures(List<Texture> out) {
+        out.add(currentSprite.getCurrentFrame());
     }
 
 

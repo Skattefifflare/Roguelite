@@ -2,13 +2,16 @@ package game;
 
 
 public class Vector2D {
-    public double x;
-    public double y;
+    protected double x;
+    protected double y;
 
     public Vector2D(double x, double y){
         this.x = x;
         this.y = y;
     }
+
+    public double getX(){return x;}
+    public double getY(){return y;}
 
     public void normalize(){
         double length = Math.sqrt(x * x + y * y);

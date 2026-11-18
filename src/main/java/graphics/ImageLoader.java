@@ -5,7 +5,7 @@ import java.io.*;
 
 
 public class ImageLoader {
-    public static BufferedImage loadImage(String name) {
+    private static BufferedImage loadImage(String name) {
         try (var stream = ImageLoader.class.getResourceAsStream("/images/" + name + ".png")) { //to make path relative to ImageLoader
             if (stream == null) {
                 System.err.println("Missing resource: /images/" + name + ".png");
@@ -17,12 +17,16 @@ public class ImageLoader {
             return null;
         }
     }
-    public static BufferedImage[] loadTileMap(String name, int tileWidth, int tileHeight, int tileCount) {
+    public static Texture loadTexture(String name){
+        return new Texture(loadImage(name));
+    }
+
+    public static Texture[] loadTileMap(String name, int tileWidth, int tileHeight, int tileCount) {
         BufferedImage tilemap = loadImage(name);
         if (tilemap == null) {
             return null;
         }
-        BufferedImage[] tiles = new BufferedImage[tileCount];
+        Texture[] tiles = new Texture[tileCount];
 
         int columns = tilemap.getWidth() / tileWidth;
         System.out.println(tilemap.getWidth() + " : " + tileWidth);
@@ -30,7 +34,7 @@ public class ImageLoader {
             int x = (i % columns) * tileWidth;
             int y = (i / columns) * tileHeight;
 
-            tiles[i] = tilemap.getSubimage(x, y, tileWidth, tileHeight);
+            tiles[i] = new Texture(tilemap.getSubimage(x, y, tileWidth, tileHeight));
         }
 
         return tiles;

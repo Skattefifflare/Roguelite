@@ -1,7 +1,7 @@
 package game;
-import java.awt.image.BufferedImage;
-
+import java.util.List;
+import graphics.Texture;
 
 public interface Renderable {
-    public BufferedImage getTexture();
+    public List<Texture> getTextures();
 }

@@ -1,8 +1,8 @@
 package graphics;
-import java.awt.image.*;
+
 
 public class Sprite {
-    private BufferedImage[] frames;
+    private Texture[] frames;
     private double frameTime;
     private double timer;
 
@@ -16,7 +16,7 @@ public class Sprite {
         timer += delta;
         timer %= (frameTime * frames.length);
     }
-    public BufferedImage getCurrentFrame(){
+    public Texture getCurrentFrame(){
         return frames[(int)(timer/frameTime)];
     }
     public void reset(){

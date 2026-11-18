@@ -8,7 +8,8 @@ import game.GameObject;
 
 public class RenderHandler {
     private List<GameObject> objects;
-    public RenderPanel panel;
+    private RenderPanel panel;
+    public RenderPanel getPanel(){return panel;}
 
     public RenderHandler() {
         objects = new ArrayList<>();
@@ -34,20 +35,20 @@ public class RenderHandler {
         AffineTransform transform = new AffineTransform();
         graphics.setColor(new Color(32, 25, 35));
         graphics.fillRect(0, 0, 1000, 1000);
-        for (var o : objects) {
+        for (var obj : objects) {
 
-            var texture = o.getTexture();
+            for (var texture : obj.getTextures()){
+                //Note till framtiden: ordning av transform-operationer spelar roll.
+                // det går att rotera och scalea runt separata pivots.
 
-            //Note till framtiden: ordning av transform-operationer spelar roll.
-            // det går att rotera och scalea runt separata pivots.
 
-            transform.setToIdentity();
-            transform.translate(texture.getWidth()/2 + Math.round(o.x), texture.getHeight() + Math.round(o.y));
-            transform.scale(o.scaleX, o.scaleY);
-            transform.translate(-texture.getWidth() / 2.0, -texture.getHeight());
+                transform.setToIdentity();
+                transform.translate(texture.image().getWidth()/2 + Math.round(obj.getX()), texture.image().getHeight() + Math.round(obj.getY()));
+                transform.scale(obj.getScaleX()*texture.scaleX(), obj.getScaleY() * texture.scaleY());
+                transform.translate(-texture.image().getWidth() / 2.0, -texture.image().getHeight());
 
-            graphics.drawImage(texture, transform,  null);
-
+                graphics.drawImage(texture.image(), transform,  null);
+            }
         }
     }
 

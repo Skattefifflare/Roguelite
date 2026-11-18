@@ -21,7 +21,7 @@ public class Game {
             window.setLocationRelativeTo(null);
 
             rh = new RenderHandler();
-            window.add(rh.panel);
+            window.add(rh.getPanel());
             window.setVisible(true);
         });
     }
@@ -34,7 +34,7 @@ public class Game {
         player = new Player();
         rh.queue(player);
 
-        InputHandler.init(rh.panel);
+        InputHandler.init(rh.getPanel());
         InputHandler.bindkey("A", KeyActions.moveLeft);
         InputHandler.bindkey("D", KeyActions.moveRight);
         InputHandler.bindkey("W", KeyActions.moveUp);

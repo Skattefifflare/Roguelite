@@ -5,7 +5,7 @@ import java.awt.*;
 
 
 class RenderPanel extends JPanel {
-    RenderHandler renderhandler;
+    private RenderHandler renderhandler;
     public RenderPanel(RenderHandler renderhandler) {
         this.renderhandler = renderhandler;
         setBackground(Color.black);

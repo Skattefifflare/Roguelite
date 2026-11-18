@@ -1,5 +1,6 @@
 package input;
-public class KeyState {
+
+class KeyState {
     public boolean pressed,justpressed,justreleased;
     boolean releasePending;
     long releaseNanos;
