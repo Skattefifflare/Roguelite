@@ -1,7 +1,8 @@
 package game;
 import java.awt.image.BufferedImage;
-import input.InputHandler;
+import input.InputFacade;
 import graphics.Sprite;
+import input.KeyActions;
 
 
 public class Player extends GameObject {
@@ -47,8 +48,8 @@ public class Player extends GameObject {
 
     private Vector2D getDirection(){
         Vector2D direction = new Vector2D(
-            (InputHandler.pressed("moveRight") ? 1 : 0) - (InputHandler.pressed("moveLeft") ? 1 : 0),
-            (InputHandler.pressed("moveDown") ? 1 : 0) - (InputHandler.pressed("moveUp") ? 1 : 0)
+            (InputFacade.pressed(KeyActions.moveRight) ? 1 : 0) - (InputFacade.pressed(KeyActions.moveLeft) ? 1 : 0),
+            (InputFacade.pressed(KeyActions.moveDown) ? 1 : 0) - (InputFacade.pressed(KeyActions.moveUp) ? 1 : 0)
         );
         direction.normalize();
         return direction;

@@ -1,24 +1,21 @@
 package input;
 import javax.swing.*;
-
-import java.util.HashMap;
+import java.util.EnumMap;
+import java.util.Map;
 
 
 public class InputHandler {
     private static volatile InputHandler instance;
 
     private JComponent comp;
-    private HashMap<String, KeyState> snapshotMap;
-    private HashMap<String, KeyState> asyncMap;
+    private Map<KeyActions, KeyState> asyncMap;
 
     private static final long same_event_ms = 4; // necessary for linux
     private static final long repeat_window_nanos = 5_000_000; // necessary for linux
 
-
     private InputHandler(JComponent comp){
         this.comp = comp;
-        snapshotMap = new HashMap<String, KeyState>();
-        asyncMap = new HashMap<String, KeyState>();
+        asyncMap = new EnumMap<>(KeyActions.class);
     }
     public static void init(JComponent comp){
         if (instance != null) throw new IllegalStateException("InputHandler already initialized");
@@ -36,20 +33,19 @@ public class InputHandler {
                     }
                 });
 
-            var nextAsync = new HashMap<String, KeyState>();
+            var nextAsync = new EnumMap<KeyActions, KeyState>(KeyActions.class);
 
             instance.asyncMap.forEach((key, value) -> {
                 nextAsync.put(key, value.carryOver());
                 value.pressed |= value.justpressed;
             });
 
-            instance.snapshotMap = instance.asyncMap;
+            InputFacade.setKeyMap(instance.asyncMap);
             instance.asyncMap = nextAsync;
         }
-
     }
 
-    public static void bindkey(String key, String action){
+    public static void bindkey(String key, KeyActions action){
         InputMap im = instance.comp.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         ActionMap am = instance.comp.getActionMap();
         im.put(KeyStroke.getKeyStroke(key), action);
@@ -60,10 +56,11 @@ public class InputHandler {
 
         synchronized (instance) {
             instance.asyncMap.putIfAbsent(action, new KeyState());
-            instance.snapshotMap.putIfAbsent(action, new KeyState());
         }
     }
 
+
+    /*
     public static boolean pressed(String action){
         synchronized (instance) { return instance.snapshotMap.get(action).pressed; }
     }
@@ -73,9 +70,11 @@ public class InputHandler {
     public static boolean justreleased(String action){
         synchronized (instance) { return instance.snapshotMap.get(action).justreleased; }
     }
+    */
 
 
-    synchronized void register(String action, boolean down, long when) {
+
+    synchronized void register(KeyActions action, boolean down, long when) {
         var state = asyncMap.get(action);
 
         if (down){

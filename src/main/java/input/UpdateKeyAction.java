@@ -5,9 +5,9 @@ import javax.swing.*;
 
 final class UpdateKeyAction extends AbstractAction{
     private final InputHandler handler;
-    private final String action;
+    private final KeyActions action;
     private final boolean down;
-    UpdateKeyAction(InputHandler handler, String action, boolean down){
+    UpdateKeyAction(InputHandler handler, KeyActions action, boolean down){
         this.handler = handler;
         this.action = action;
         this.down = down;

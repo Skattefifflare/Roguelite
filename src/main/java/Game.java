@@ -3,6 +3,7 @@ import game.*;
 import graphics.*;
 import input.InputHandler;
 import java.lang.reflect.*;
+import input.KeyActions;
 
 
 public class Game {
@@ -34,10 +35,10 @@ public class Game {
         rh.queue(player);
 
         InputHandler.init(rh.panel);
-        InputHandler.bindkey("A", "moveLeft");
-        InputHandler.bindkey("D", "moveRight");
-        InputHandler.bindkey("W", "moveUp");
-        InputHandler.bindkey("S", "moveDown");
+        InputHandler.bindkey("A", KeyActions.moveLeft);
+        InputHandler.bindkey("D", KeyActions.moveRight);
+        InputHandler.bindkey("W", KeyActions.moveUp);
+        InputHandler.bindkey("S", KeyActions.moveDown);
     }
 
     private void update(double delta) {
