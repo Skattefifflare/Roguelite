@@ -22,4 +22,7 @@ public class Sprite {
     public void reset(){
         timer = 0;
     }
+    public Texture getFrame(int index){
+        return frames[index];
+    }
 }

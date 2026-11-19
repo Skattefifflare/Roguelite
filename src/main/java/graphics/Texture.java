@@ -3,19 +3,14 @@ import java.awt.image.BufferedImage;
 
 
 public class Texture {
-    private BufferedImage image;
-    public BufferedImage image(){return image;}
-    private double offsetX;
-    public double offsetX(){return offsetX;}
-    private double offsetY;
-    public double offsetY(){return offsetY;}
-    private double scaleX = 1;
-    public double scaleX(){return scaleX;}
-    private double scaleY = 1;
-    public double scaleY(){return scaleY;}
-    private double rotation;
-    public double roation(){return rotation;}
+    public BufferedImage image;
+    public double offsetX;
+    public double offsetY;
+    public double scaleX = 1;
+    public double scaleY = 1;
 
+    // rotation är INTE implementerat i Renderhandler (11/19)
+    private double rotation;
 
     public Texture(BufferedImage image) {
         this.image = image;
@@ -36,6 +31,14 @@ public class Texture {
         this.rotation = rotation;
     }
 
-
-
+    public double getRotation(){
+        return rotation;
+    }
+    public void setRotation(double radians){
+        rotation = radians % 2 * Math.PI;
+    }
+    public void rotate(double radians) {
+        rotation += radians;
+        rotation %= 2*Math.PI;
+    }
 }

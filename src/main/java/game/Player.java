@@ -1,5 +1,4 @@
 package game;
-import java.awt.image.BufferedImage;
 import input.InputFacade;
 import graphics.Sprite;
 import input.KeyActions;

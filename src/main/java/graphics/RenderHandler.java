@@ -43,11 +43,13 @@ public class RenderHandler {
 
 
                 transform.setToIdentity();
-                transform.translate(texture.image().getWidth()/2 + Math.round(obj.getX()), texture.image().getHeight() + Math.round(obj.getY()));
-                transform.scale(obj.getScaleX()*texture.scaleX(), obj.getScaleY() * texture.scaleY());
-                transform.translate(-texture.image().getWidth() / 2.0, -texture.image().getHeight());
+                transform.translate(
+                    texture.image.getWidth()/2 + Math.round(obj.getX()+texture.offsetX),
+                    texture.image.getHeight() + Math.round(obj.getY()+texture.offsetY));
+                transform.scale(obj.getScaleX()*texture.scaleX, obj.getScaleY() * texture.scaleY);
+                transform.translate(-texture.image.getWidth() / 2.0, -texture.image.getHeight()); //förbestämd skalningspivot mitten-botten
 
-                graphics.drawImage(texture.image(), transform,  null);
+                graphics.drawImage(texture.image, transform,  null);
             }
         }
     }
