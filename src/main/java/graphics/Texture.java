@@ -1,33 +1,31 @@
 package graphics;
 import java.awt.image.BufferedImage;
-
+import game.Vector2D;
 
 public class Texture {
     public BufferedImage image;
-    public double offsetX;
-    public double offsetY;
-    public double scaleX = 1;
-    public double scaleY = 1;
+    public Vector2D offset;
+    public Vector2D scale;
+    public Vector2D scalePivot;
 
     // rotation är INTE implementerat i Renderhandler (11/19)
     private double rotation;
+    private Vector2D rotationPivot;
 
     public Texture(BufferedImage image) {
         this.image = image;
+        offset = new Vector2D(0, 0);
+        scale = new Vector2D(1,1);
     }
-
-    public Texture(BufferedImage image, double offsetX, double offsetY) {
+    public Texture(BufferedImage image, Vector2D offset) {
         this.image = image;
-        this.offsetX = offsetX;
-        this.offsetY = offsetY;
+        this.offset = offset;
+        scale = new Vector2D(1, 1);
     }
-
-    public Texture(BufferedImage image, double offsetX, double offsetY, double scaleX, double scaleY, double rotation) {
+    public Texture(BufferedImage image, Vector2D offset, Vector2D scale, double rotation) {
         this.image = image;
-        this.offsetX = offsetX;
-        this.offsetY = offsetY;
-        this.scaleX = scaleX;
-        this.scaleY = scaleY;
+        this.offset = offset;
+        this.scale = scale;
         this.rotation = rotation;
     }
 

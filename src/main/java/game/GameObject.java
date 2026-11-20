@@ -6,27 +6,16 @@ import graphics.Texture;
 
 public abstract class GameObject implements Renderable{
 
-    protected double x;
-    protected double y;
-    protected double scaleX;
-    protected double scaleY;
+    public Vector2D position;
+    public Vector2D scale;
 
     private final List<Texture> queuedTextures;
 
-    public GameObject(double x, double y, double scaleX, double scaleY){
-        this.x = x;
-        this.y = y;
-        this.scaleX = scaleX;
-        this.scaleY = scaleY;
-
+    public GameObject(Vector2D position, Vector2D scale){
+        this.position = position;
+        this.scale = scale;
         queuedTextures = new ArrayList<>();
     }
-
-
-    public double getX() {return x;}
-    public double getY() {return y;}
-    public double getScaleX(){return scaleX;}
-    public double getScaleY(){return scaleY;}
 
 
     @Override

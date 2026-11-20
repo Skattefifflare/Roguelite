@@ -44,9 +44,9 @@ public class RenderHandler {
 
                 transform.setToIdentity();
                 transform.translate(
-                    texture.image.getWidth()/2 + Math.round(obj.getX()+texture.offsetX),
-                    texture.image.getHeight() + Math.round(obj.getY()+texture.offsetY));
-                transform.scale(obj.getScaleX()*texture.scaleX, obj.getScaleY() * texture.scaleY);
+                    texture.image.getWidth()/2 + Math.round(obj.position.x+texture.offset.x),
+                    texture.image.getHeight() + Math.round(obj.position.y+texture.offset.y));
+                transform.scale(obj.scale.x*texture.scale.x, obj.scale.y * texture.scale.y);
                 transform.translate(-texture.image.getWidth() / 2.0, -texture.image.getHeight()); //förbestämd skalningspivot mitten-botten
 
                 graphics.drawImage(texture.image, transform,  null);

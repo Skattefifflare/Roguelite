@@ -11,11 +11,11 @@ public class Player extends GameObject {
     private Sprite run_sprite;
     private Sprite currentSprite;
 
-    private static int scale = 5;
+
 
     private int speed = 250;
     public Player(){
-        super(500, 500, scale, scale);
+        super(new Vector2D(100,100), new Vector2D(3, 3));
         idle_sprite = new Sprite("BIRDMANIDLE", 16, 16, 5, 0.2 );
         run_sprite = new Sprite("BIRDMANRUNS", 16, 16, 7, 0.05);
 
@@ -40,10 +40,10 @@ public class Player extends GameObject {
             updateSprite(delta, idle_sprite);
         }
         if (direction.x < 0){
-            scaleX = -scale;
+            scale.x = -Math.abs(scale.x);
         }
         else if (direction.x > 0) {
-            scaleX = scale;
+            scale.x = Math.abs(scale.x);
         }
     }
 
@@ -56,8 +56,8 @@ public class Player extends GameObject {
         return direction;
     }
     private void move(Vector2D direction, double delta){
-        x += direction.x * speed * delta;
-        y += direction.y * speed * delta;
+        position.x += direction.x * speed * delta;
+        position.y += direction.y * speed * delta;
     }
 
     private void updateSprite(double delta, Sprite new_sprite){
