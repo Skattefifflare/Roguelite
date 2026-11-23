@@ -4,10 +4,12 @@ import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
 import game.GameObject;
+import game.Renderable;
+import game.Vector2D;
 
 
 public class RenderHandler {
-    private List<GameObject> objects;
+    private List<Renderable> objects;
     private RenderPanel panel;
     public RenderPanel getPanel(){return panel;}
 
@@ -38,16 +40,28 @@ public class RenderHandler {
         for (var obj : objects) {
 
             for (var texture : obj.getTextures()){
-                //Note till framtiden: ordning av transform-operationer spelar roll.
-                // det går att rotera och scalea runt separata pivots.
-
+                double scaleX = obj.getScale().x * texture.scale.x;
+                double scaleY = obj.getScale().y * texture.scale.y;
+                Vector2D scalePiv = texture.scalePivot;
+                Vector2D rotPiv = texture.rotationPivot;
+                rotPiv = new Vector2D(
+                    scalePiv.x + scaleX * (rotPiv.x - scalePiv.x),
+                    scalePiv.y + scaleY * (rotPiv.y - scalePiv.y)
+                );
 
                 transform.setToIdentity();
+
                 transform.translate(
-                    texture.image.getWidth()/2 + Math.round(obj.position.x+texture.offset.x),
-                    texture.image.getHeight() + Math.round(obj.position.y+texture.offset.y));
-                transform.scale(obj.scale.x*texture.scale.x, obj.scale.y * texture.scale.y);
-                transform.translate(-texture.image.getWidth() / 2.0, -texture.image.getHeight()); //förbestämd skalningspivot mitten-botten
+                    Math.round(obj.getPosition().x + texture.offset.x),
+                    Math.round(obj.getPosition().y + texture.offset.y)
+                );
+                transform.translate(rotPiv.x, rotPiv.y);
+                transform.rotate(texture.getRotation());
+                transform.translate(-rotPiv.x, -rotPiv.y);
+
+                transform.translate(scalePiv.x, scalePiv.y);
+                transform.scale(scaleX, scaleY);
+                transform.translate(-scalePiv.x, -scalePiv.y);
 
                 graphics.drawImage(texture.image, transform,  null);
             }

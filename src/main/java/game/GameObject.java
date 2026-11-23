@@ -7,7 +7,12 @@ import graphics.Texture;
 public abstract class GameObject implements Renderable{
 
     public Vector2D position;
+    @Override
+    public final Vector2D getPosition() {return position;}
+
     public Vector2D scale;
+    @Override
+    public final Vector2D getScale() {return scale;}
 
     private final List<Texture> queuedTextures;
 
@@ -16,7 +21,6 @@ public abstract class GameObject implements Renderable{
         this.scale = scale;
         queuedTextures = new ArrayList<>();
     }
-
 
     @Override
     public final List<Texture> getTextures(){

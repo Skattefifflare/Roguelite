@@ -22,4 +22,11 @@ public class Vector2D {
     public double getLength(){
         return Math.sqrt(x * x + y * y);
     }
+
+    public static Vector2D zero() {return new Vector2D(0,0);}
+    public static Vector2D one() {return new Vector2D(1,1);}
+
+    public Vector2D copy(){
+        return new Vector2D(x, y);
+    }
 }
