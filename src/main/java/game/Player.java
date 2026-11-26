@@ -94,4 +94,5 @@ public class Player extends GameObject implements Updateable {
         currentSprite = new_sprite;
         currentSprite.update(delta);
     }
+
 }
