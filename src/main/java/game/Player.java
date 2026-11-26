@@ -2,16 +2,20 @@ package game;
 import input.InputFacade;
 import graphics.Sprite;
 import input.KeyActions;
+import java.awt.Color;
 import java.util.List;
 import graphics.Texture;
+import graphics.text.FontSizes;
+import graphics.text.TextHandler;
+import input.mouse.MouseFacade;
+import input.mouse.MouseButtons;
 
-
-public class Player extends GameObject {
+public class Player extends GameObject implements Updateable {
     private Sprite idle_sprite;
     private Sprite run_sprite;
     private Sprite currentSprite;
 
-
+    private Texture text;
 
     private int speed = 250;
     public Player(){
@@ -20,14 +24,20 @@ public class Player extends GameObject {
         run_sprite = new Sprite("BIRDMANRUNS", 16, 16, 7, 0.05);
 
         currentSprite = idle_sprite;
+
+        text = TextHandler.createTextTexture("hello world", "MinecraftSeven", FontSizes.medium, Color.WHITE);
+        text.scale = new Vector2D(0.5, 0.5);
+        text.offset.y = -50;
+
     }
 
     @Override
     protected final void queueTextures(List<Texture> out) {
         out.add(currentSprite.getCurrentFrame());
+        out.add(text);
     }
 
-
+    @Override
     public void update(double delta) {
         var direction = getDirection();
 
@@ -45,6 +55,20 @@ public class Player extends GameObject {
         else if (direction.x > 0) {
             scale.x = Math.abs(scale.x);
         }
+        /*
+        idle_spritef (MouseFacade.justClicked(MouseButtons.left)){
+            position.y += 100;
+        }
+        position.x += MouseFacade.getScroll();
+
+        if (MouseFacade.justClicked(MouseButtons.right)){
+            position = MouseFacade.getEventPos(MouseButtons.right);
+        }
+        if (MouseFacade.clicked(MouseButtons.middle)){
+            position = MouseFacade.getMousePos();
+        }
+        */
+
     }
 
     private Vector2D getDirection(){

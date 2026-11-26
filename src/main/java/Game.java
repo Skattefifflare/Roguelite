@@ -4,7 +4,7 @@ import graphics.*;
 import input.InputHandler;
 import java.lang.reflect.*;
 import input.KeyActions;
-
+import input.mouse.MouseHandler;
 
 public class Game {
     RenderHandler rh;
@@ -41,6 +41,8 @@ public class Game {
         InputHandler.bindkey("D", KeyActions.moveRight);
         InputHandler.bindkey("W", KeyActions.moveUp);
         InputHandler.bindkey("S", KeyActions.moveDown);
+
+        MouseHandler.init(rh.getPanel());
     }
 
     private void update(double delta) {
@@ -59,6 +61,7 @@ public class Game {
             last = now;
 
             InputHandler.takeSnapshot();
+            MouseHandler.takeSnapshot();
             update(delta);
             draw();
             try {
