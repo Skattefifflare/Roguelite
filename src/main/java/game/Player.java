@@ -2,16 +2,19 @@ package game;
 import input.InputFacade;
 import graphics.Sprite;
 import input.KeyActions;
+
+import java.awt.Color;
 import java.util.List;
 import graphics.Texture;
-
+import graphics.text.FontSizes;
+import graphics.text.TextHandler;
 
 public class Player extends GameObject {
     private Sprite idle_sprite;
     private Sprite run_sprite;
     private Sprite currentSprite;
 
-
+    private Texture text;
 
     private int speed = 250;
     public Player(){
@@ -20,11 +23,17 @@ public class Player extends GameObject {
         run_sprite = new Sprite("BIRDMANRUNS", 16, 16, 7, 0.05);
 
         currentSprite = idle_sprite;
+
+        text = TextHandler.createTextTexture("hello world", "MinecraftSeven", FontSizes.medium, Color.WHITE);
+        text.scale = new Vector2D(0.5, 0.5);
+        text.offset.y = -50;
+
     }
 
     @Override
     protected final void queueTextures(List<Texture> out) {
         out.add(currentSprite.getCurrentFrame());
+        out.add(text);
     }
 
 
