@@ -35,6 +35,7 @@ public class Game {
         player = new Player();
         rh.queue(player);
         janitor = new Janitor(new Vector2D(150, 50));  //maybe remove
+        janitor.setTarget(player);
         rh.queue(janitor);  //maybe remove
         InputHandler.init(rh.getPanel());
         InputHandler.bindkey("A", KeyActions.moveLeft);
@@ -47,6 +48,7 @@ public class Game {
 
     private void update(double delta) {
         player.update(delta);
+        janitor.update(delta);
     }
     private void draw(){
         rh.draw();
