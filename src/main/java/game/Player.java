@@ -8,6 +8,8 @@ import java.util.List;
 import graphics.Texture;
 import graphics.text.FontSizes;
 import graphics.text.TextHandler;
+import input.mouse.MouseFacade;
+import input.mouse.MouseButtons;
 
 public class Player extends GameObject {
     private Sprite idle_sprite;
@@ -54,6 +56,20 @@ public class Player extends GameObject {
         else if (direction.x > 0) {
             scale.x = Math.abs(scale.x);
         }
+        /*
+        idle_spritef (MouseFacade.justClicked(MouseButtons.left)){
+            position.y += 100;
+        }
+        position.x += MouseFacade.getScroll();
+
+        if (MouseFacade.justClicked(MouseButtons.right)){
+            position = MouseFacade.getEventPos(MouseButtons.right);
+        }
+        if (MouseFacade.clicked(MouseButtons.middle)){
+            position = MouseFacade.getMousePos();
+        }
+        */
+
     }
 
     private Vector2D getDirection(){

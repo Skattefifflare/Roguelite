@@ -11,7 +11,7 @@ class MouseState {
 
     final EnumMap<MouseButtons, MouseButtonState> buttonMap = new EnumMap<>(MouseButtons.class);
 
-    Vector2D pos;
+    Vector2D pos = Vector2D.zero();
     double delta_scroll; // amount of scroll that happened from last frame. downscroll is positive
 
     MouseState(){
