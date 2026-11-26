@@ -70,4 +70,5 @@ public class Player extends GameObject {
         currentSprite = new_sprite;
         currentSprite.update(delta);
     }
+
 }

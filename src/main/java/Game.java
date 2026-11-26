@@ -9,6 +9,7 @@ import input.KeyActions;
 public class Game {
     RenderHandler rh;
     Player player;
+    Janitor janitor; //maybe remove idk yet
 
     public Game() throws InterruptedException, InvocationTargetException {
         System.setProperty("sun.java2d.opengl", "false");
@@ -33,7 +34,8 @@ public class Game {
     private void initialize(){
         player = new Player();
         rh.queue(player);
-
+        janitor = new Janitor(new Vector2D(150, 50));  //maybe remove
+        rh.queue(janitor);  //maybe remove
         InputHandler.init(rh.getPanel());
         InputHandler.bindkey("A", KeyActions.moveLeft);
         InputHandler.bindkey("D", KeyActions.moveRight);
