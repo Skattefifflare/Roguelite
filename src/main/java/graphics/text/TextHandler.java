@@ -22,21 +22,23 @@ public final class TextHandler{
     }
 
     public static Texture createTextTexture(String message, String font_name, FontSizes size, Color color){ // säg det snabbt fem gånger
-        Font font = fonts.computeIfAbsent(font_name, TextHandler::loadFont);
+        Font font = fonts.computeIfAbsent(font_name, TextHandler::loadFont).deriveFont((float)size.value);
 
         var temp = new BufferedImage(1,1, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = temp.createGraphics();
         g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g.setFont(font);
         FontMetrics fm = g.getFontMetrics();
-        int width = fm.getHeight();
+        int width = Math.max(1, fm.stringWidth(message));
         int height = fm.getHeight();
         int baseline = fm.getAscent();
         g.dispose();
 
+        System.out.println("size: "+width+" : "+height+", baseline: "+baseline);
+
         var image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         g = image.createGraphics();
-        g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
         g.setFont(font);
         g.setColor(color);
         g.drawString(message, 0, baseline);
