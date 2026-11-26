@@ -3,12 +3,11 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
-import game.GameObject;
 import utils.Vector2D;
 import utils.Renderable;;
 
 
-public class RenderHandler {
+public final class RenderHandler {
     private List<Renderable> objects;
     private RenderPanel panel;
     public RenderPanel getPanel(){return panel;}
@@ -17,7 +16,9 @@ public class RenderHandler {
         objects = new ArrayList<>();
         panel = new RenderPanel(this);
     }
-    public void queue(GameObject object){
+
+
+    public void queue(Renderable object){
         objects.add(object);
     }
 

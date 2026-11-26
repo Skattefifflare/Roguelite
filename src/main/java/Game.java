@@ -1,17 +1,15 @@
 import javax.swing.*;
 import game.*;
 import graphics.*;
-import input.InputHandler;
 import java.lang.reflect.*;
-import input.KeyActions;
-import input.mouse.MouseHandler;
-import utils.Vector2D;
 import game.enemies.*;
 
 public class Game {
     RenderHandler rh;
     Player player;
     Janitor janitor; //maybe remove idk yet
+
+    Scene scene;
 
     public Game() throws InterruptedException, InvocationTargetException {
         System.setProperty("sun.java2d.opengl", "false");
@@ -34,27 +32,14 @@ public class Game {
     }
 
     private void initialize(){
-        player = new Player();
-        rh.queue(player);
-        janitor = new Janitor(new Vector2D(150, 50));  //maybe remove
-        janitor.setTarget(player);
-        rh.queue(janitor);  //maybe remove
-        InputHandler.init(rh.getPanel());
-        InputHandler.bindkey("A", KeyActions.moveLeft);
-        InputHandler.bindkey("D", KeyActions.moveRight);
-        InputHandler.bindkey("W", KeyActions.moveUp);
-        InputHandler.bindkey("S", KeyActions.moveDown);
-
-        MouseHandler.init(rh.getPanel());
+        scene = new Scene(rh);
     }
 
     private void update(double delta) {
-        player.update(delta);
-        janitor.update(delta);
+        scene.update(delta);
     }
     private void draw(){
         rh.draw();
-
     }
 
     private void gameLoop() {
@@ -63,11 +48,9 @@ public class Game {
             long now = System.nanoTime();
             double delta = (now - last) / 1_000_000_000.0;
             last = now;
-
-            InputHandler.takeSnapshot();
-            MouseHandler.takeSnapshot();
             update(delta);
             draw();
+
             try {
                 Thread.sleep(8);
             } catch (InterruptedException e) {
