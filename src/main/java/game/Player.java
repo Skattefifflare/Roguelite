@@ -8,6 +8,8 @@ import graphics.Texture;
 import graphics.text.FontSizes;
 import graphics.text.TextHandler;
 import input.mouse.MouseFacade;
+import utils.Updateable;
+import utils.Vector2D;
 import input.mouse.MouseButtons;
 
 public class Player extends GameObject implements Updateable {

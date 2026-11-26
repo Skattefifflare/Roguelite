@@ -1,9 +1,13 @@
-package game;
+package game.enemies;
+
+import game.GameObject;
+import utils.Updateable;
+import utils.Vector2D;
 
 public abstract class Enemy extends GameObject implements Updateable{
     protected final double speed;
     protected final Vector2D direction = new Vector2D(0, 0);
-    protected boolean facingLeft = true; 
+    protected boolean facingLeft = true;
 
     public Enemy(Vector2D position, Vector2D scale, double speed) {
         super(position, scale);
@@ -19,5 +23,3 @@ public abstract class Enemy extends GameObject implements Updateable{
     position.y += direction.y * speed * delta;
     }
 }
-
- 

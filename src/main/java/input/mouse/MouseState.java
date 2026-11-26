@@ -1,7 +1,8 @@
 package input.mouse;
 
 import java.util.EnumMap;
-import game.Vector2D;
+
+import utils.Vector2D;
 
 class MouseState {
     static class MouseButtonState {

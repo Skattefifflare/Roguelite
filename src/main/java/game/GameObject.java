@@ -2,6 +2,8 @@ package game;
 import java.util.ArrayList;
 import java.util.List;
 import graphics.Texture;
+import utils.Renderable;
+import utils.Vector2D;
 
 
 public abstract class GameObject implements Renderable{

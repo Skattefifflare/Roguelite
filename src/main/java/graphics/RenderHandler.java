@@ -4,8 +4,8 @@ import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
 import game.GameObject;
-import game.Renderable;
-import game.Vector2D;
+import utils.Vector2D;
+import utils.Renderable;;
 
 
 public class RenderHandler {

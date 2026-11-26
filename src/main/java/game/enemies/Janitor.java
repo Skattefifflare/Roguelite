@@ -1,15 +1,17 @@
-package game;
+package game.enemies;
 
 import java.util.List;
-import graphics.ImageLoader;
+
+import game.GameObject;
 import graphics.Sprite;
 import graphics.Texture;
+import utils.Vector2D;
 
 public final class Janitor extends Enemy{
     private Sprite idle_sprite;
     private Sprite run_sprite;
     private Sprite currentSprite;
-    
+
     GameObject target;
 
     public Janitor(Vector2D startpos){
@@ -17,19 +19,19 @@ public final class Janitor extends Enemy{
         idle_sprite = new Sprite("BIRDMANIDLE", 16, 16, 5, 0.2 );
         run_sprite = new Sprite("BIRDMANRUNS", 16, 16, 7, 0.05);
         currentSprite = idle_sprite;
-        
-        
+
+
     }
     public void setTarget(GameObject target){
         this.target = target;
     }
-    
-    
+
+
     @Override
     protected final void queueTextures(List<Texture> out) {
         out.add(currentSprite.getCurrentFrame());
     }
-    
+
    private void move(Vector2D direction, double delta){
     position.x += direction.x * speed * delta;
     position.y += direction.y * speed * delta;
@@ -51,5 +53,3 @@ public final class Janitor extends Enemy{
         currentSprite.update(delta);
     }
 }
-
-

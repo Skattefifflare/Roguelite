@@ -1,5 +1,5 @@
 package input.mouse;
-import game.Vector2D;
+import utils.Vector2D;
 
 
 public class MouseFacade {

@@ -5,6 +5,8 @@ import input.InputHandler;
 import java.lang.reflect.*;
 import input.KeyActions;
 import input.mouse.MouseHandler;
+import utils.Vector2D;
+import game.enemies.*;
 
 public class Game {
     RenderHandler rh;

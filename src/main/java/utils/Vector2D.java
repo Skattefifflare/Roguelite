@@ -1,4 +1,4 @@
-package game;
+package utils;
 
 
 public class Vector2D {
