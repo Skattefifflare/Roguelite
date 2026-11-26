@@ -2,7 +2,6 @@ package game;
 import input.InputFacade;
 import graphics.Sprite;
 import input.KeyActions;
-
 import java.awt.Color;
 import java.util.List;
 import graphics.Texture;
@@ -11,7 +10,7 @@ import graphics.text.TextHandler;
 import input.mouse.MouseFacade;
 import input.mouse.MouseButtons;
 
-public class Player extends GameObject {
+public class Player extends GameObject implements Updateable {
     private Sprite idle_sprite;
     private Sprite run_sprite;
     private Sprite currentSprite;
@@ -38,7 +37,7 @@ public class Player extends GameObject {
         out.add(text);
     }
 
-
+    @Override
     public void update(double delta) {
         var direction = getDirection();
 
