@@ -5,7 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseWheelEvent;
 
 
-class MouseHandler extends MouseAdapter {
+public class MouseHandler extends MouseAdapter {
 
     private static volatile MouseHandler instance;
     private MouseState asyncState = new MouseState();

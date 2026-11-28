@@ -1,6 +1,7 @@
 package graphics;
 import java.awt.image.BufferedImage;
-import game.Vector2D;
+
+import utils.Vector2D;
 
 public class Texture {
     public BufferedImage image;
